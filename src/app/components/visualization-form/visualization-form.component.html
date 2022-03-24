@@ -1,0 +1,97 @@
+<mat-toolbar color="primary">
+  <a mat-button [routerLink]="''"> Home </a>
+</mat-toolbar>
+
+<mat-tab-group mat-align-tabs="center">
+  
+  <!-- <mat-tab label="Standard Mode">
+    <div class="container" fxLayout="column" fxLayoutAlign="center center">
+      <app-standard-mode></app-standard-mode>
+    </div>
+
+  </mat-tab> -->
+  <mat-tab label="Query Mode">
+    <div class="container" fxLayout="column" fxLayoutAlign="center center">
+      <mat-card>
+        <mat-card-title>Visualization Info</mat-card-title>
+        <mat-card-content>
+          <form
+            [formGroup]="form"
+            fxLayout="column"
+            fxLayoutAlign="center center"
+          >
+            <mat-form-field
+              [matTooltip]="getQueryTooltip()"
+              matTooltipPosition="right"
+              [matTooltipClass]="'tooltip'"
+            >
+              <mat-card-subtitle><p>Cypher Query</p></mat-card-subtitle>
+              <input matInput formControlName="query" />
+            </mat-form-field>
+
+            <mat-slide-toggle
+              formControlName="enableCustomSettings"
+              color="warn"
+              >Custom Settings</mat-slide-toggle
+            >
+
+            <ng-container *ngIf="this.form.get('enableCustomSettings').value">
+              <mat-form-field
+                [matTooltip]="getBasedOnTooltip()"
+                matTooltipPosition="right"
+                [matTooltipClass]="'tooltip'"
+              >
+                <mat-card-subtitle><p>Based On</p></mat-card-subtitle>
+                <mat-select formControlName="basedOn">
+                  <mat-option value="property">Property</mat-option>
+                  <mat-option value="custom">Custom</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-card-subtitle> Styling Nodes</mat-card-subtitle>
+              <mat-form-field
+                [matTooltip]="getNodeLabelTooltip()"
+                matTooltipPosition="right"
+                [matTooltipClass]="'tooltip'"
+              >
+                <mat-card-subtitle><p>Node Label</p></mat-card-subtitle>
+                <input matInput formControlName="label" />
+              </mat-form-field>
+
+              <mat-form-field
+                [matTooltip]="getSizeTooltip()"
+                matTooltipPosition="right"
+                [matTooltipClass]="'tooltip'"
+              >
+                <mat-card-subtitle><p>Size</p></mat-card-subtitle>
+                <input matInput formControlName="size" />
+              </mat-form-field>
+
+              <mat-form-field
+                [matTooltip]="getColorTooltip()"
+                matTooltipPosition="right"
+                [matTooltipClass]="'tooltip'"
+              >
+                <mat-card-subtitle><p>Color</p></mat-card-subtitle>
+                <input matInput formControlName="valueColor" />
+              </mat-form-field>
+            </ng-container>
+          </form>
+        </mat-card-content>
+
+        <mat-card-actions>
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="openGraphComponent()"
+          >
+            Run <mat-icon>arrow_forward</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+      <!-- {{myForm.value | json}} -->
+      <!-- <mat-card-subtitle> Styling Relationships </mat-card-subtitle> -->
+    </div>
+  </mat-tab>
+  
+</mat-tab-group>

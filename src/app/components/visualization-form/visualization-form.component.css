@@ -1,0 +1,33 @@
+.container {
+  height: 100%;
+  width: 100%;
+  background-color: lightgray;
+  padding: 10px;
+}
+mat-icon {
+  padding: 5px;
+}
+
+mat-card-subtitle {
+  font-weight: bold;
+  font-size: large;
+}
+
+mat-card {
+  width: 30%;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+a {
+  font-size: large;
+}
+mat-toolbar {
+  height: 6%;
+}
+
+.example-chip-list {
+  width: 100%;
+}

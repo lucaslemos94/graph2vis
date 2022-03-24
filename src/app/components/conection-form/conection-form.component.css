@@ -1,0 +1,27 @@
+mat-card{
+    width: 30%; 
+}
+
+.container{
+    height: 94%;
+   
+   
+}
+
+mat-form-field{
+    width: 100%;
+}
+
+mat-card-title{
+    margin-bottom: 5%;
+}
+
+a{
+    font-size: large;
+}
+mat-toolbar{
+    height: 6%;
+}
+
+
+
