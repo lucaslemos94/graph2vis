@@ -29,10 +29,6 @@ import { DialogComponent } from './components/dialog/dialog.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonToggleModule} from '@angular/material/button-toggle'; 
 import {MatTabsModule} from '@angular/material/tabs';
-import { StandardModeComponent } from './components/standard-mode/standard-mode.component';
-import { SelectCheckAllComponent } from './select-check-all/select-check-all.component';
-import { StandartGraphComponent } from './components/standart-graph/standart-graph.component';
-import { CentralitiesComponent } from './components/centralities/centralities.component';
 
 
 
@@ -44,10 +40,6 @@ import { CentralitiesComponent } from './components/centralities/centralities.co
     VisualizationFormComponent,
     GraphComponent,
     DialogComponent,
-    StandardModeComponent,
-    SelectCheckAllComponent,
-    StandartGraphComponent,
-    CentralitiesComponent
   ],
   imports: [
     BrowserModule,

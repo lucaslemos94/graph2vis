@@ -59,29 +59,6 @@ export class Neo4jService {
     }
   }
 
-  async standartQuery(objQuery:any) {
-    const myForm = this.dataService.retrieveForm();
-    const session = this.driver.session({
-      database: myForm.name,
-      defaultAccessMode: neo4j.session.READ,
-    });
-
-    // console.log(objQuery);
-    
-    const query = `MATCH (n) 
-    WHERE labels(n) in [${objQuery.params.nodes}] 
-    AND NOT isEmpty(${objQuery.params.relationships})
-    RETURN n LIMIT 10`
-
-    try {
-      return await session.run(query);
-    } catch (error) {
-      throw error;
-    } finally {
-      session.close();
-    }
-  }
-
   async getLabelNodes() {
     const myForm = this.dataService.retrieveForm();
     const session = this.driver.session({
