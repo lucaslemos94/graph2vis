@@ -80,13 +80,17 @@ export class GraphComponent implements OnInit {
                     properties:properties
                     
                   });
-                } else
+                } else{
+                let properties_edge = record.get(key).properties;
+                let label_edge = record.get(key).type
                   this.rawGraphData.edges.push({
                     id: record.get(key).identity,
                     source: record.get(key).start,
                     target: record.get(key).end,
+                    properties: properties_edge,
+                    label:label_edge
                   });
-              });
+              }});
             });
           } else if (this.form.get("basedOn") == "custom") {
             result.records.forEach((record) => {
@@ -107,17 +111,23 @@ export class GraphComponent implements OnInit {
                     color: color,
                     properties:properties
                   });
-                } else
+                } else{
+                let properties_edge = record.get(key).properties;
+                let label_edge = record.get(key).type
                   this.rawGraphData.edges.push({
                     id: record.get(key).identity,
                     source: record.get(key).start,
                     target: record.get(key).end,
+                    properties: properties_edge,
+                    label: label_edge
                   });
-              });
+              }});
             });
           }
         } else if (this.form.get("enableCustomSettings") == "false") {
           result.records.forEach((record) => {
+
+            
             record.keys.forEach((key: any) => {
               if (!record.get(key).hasOwnProperty("start")) {
 
@@ -133,10 +143,16 @@ export class GraphComponent implements OnInit {
                   properties: properties,
                 });
               } else {
+
+                let properties_edge = record.get(key).properties;
+                let label_edge = record.get(key).type
+
                 this.rawGraphData.edges.push({
                   id: record.get(key).identity,
                   source: record.get(key).start,
                   target: record.get(key).end,
+                  properties: properties_edge,
+                  label:label_edge
                 });
               }
             });
@@ -164,8 +180,6 @@ export class GraphComponent implements OnInit {
 
 
         
-
-
         if (this.form.get("enableCustomSettings") == "true") {
           if (this.form.get("basedOn") == "property")
             this.drawBasedOnProperty(graph);
@@ -175,7 +189,7 @@ export class GraphComponent implements OnInit {
         this.dataService.saveObj(graph);
           this.drawDefault(graph);
 
-
+        this.buildGUI();
           
       });
   }
@@ -204,11 +218,16 @@ export class GraphComponent implements OnInit {
       .nodeLabel(
         (node: any) =>
           `<mat-card><center>${node.label} </center></br> ${JSON.stringify(node.properties)} <mat-card>`
-      );
+      ).linkLabel((link: any) =>
+      `<mat-card><center>${link.label} </center></br> ${JSON.stringify(link.properties)} <mat-card>`)
+      .onNodeDragEnd((node:any) => {
+        node.fx = node.x;
+        node.fy = node.y;
+        node.fz = node.z;
+      });
 
 
 
-    this.buildGUI();
   }
 
   drawBasedOnCustom(gData: any) {
@@ -222,10 +241,16 @@ export class GraphComponent implements OnInit {
       .nodeLabel(
         (node: any) =>
           `<mat-card><center>${node.label} </center></br> ${JSON.stringify(node.properties)} <mat-card>`
-      );
+      ).linkLabel((link: any) =>
+      `<mat-card><center>${link.label} </center></br> ${JSON.stringify(link.properties)} <mat-card>`)
+      .onNodeDragEnd((node:any) => {
+        node.fx = node.x;
+        node.fy = node.y;
+        node.fz = node.z;
+      });
 
 
-    this.buildGUI();
+   
   }
 
   drawDefault(gData: any) {
@@ -240,9 +265,14 @@ export class GraphComponent implements OnInit {
       .nodeLabel(
         (node: any) =>
           `<mat-card><center>${node.label} </center></br> ${JSON.stringify(node.properties)} <mat-card>`
-      )
+      ).linkLabel((link: any) =>
+      `<mat-card><center>${link.label} </center></br> ${JSON.stringify(link.properties)} <mat-card>`)
+      .onNodeDragEnd((node:any) => {
+        node.fx = node.x;
+        node.fy = node.y;
+        node.fz = node.z;
+      });
 
-    this.buildGUI();
 
 
   }
@@ -322,6 +352,10 @@ export class GraphComponent implements OnInit {
       this.finalGraphData.height(height);
       this.finalGraphData.controls().handleResize();
     }
+  }
+
+  refresh(){
+    this.finalGraphData.refresh()
   }
 
   ngOnDestroy() {
