@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "postinstall": "ng build --aot --prod"
+    "postinstall": ""
   },
   "engines": {
     "node": "14.17.0",
@@ -35,6 +35,7 @@
     "rxjs": "~7.3.0",
     "three": "^0.132.2",
     "tslib": "^2.3.1",
+    "typescript": "4.2.*",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
@@ -50,7 +51,6 @@
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.1",
-    "karma-jasmine-html-reporter": "~1.7.0",
-    "typescript": "^4.3.5"
+    "karma-jasmine-html-reporter": "~1.7.0"
   }
 }
