@@ -30,7 +30,13 @@
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "ngraph.forcelayout",
+              "ngraph.graph",
+              "neo4j-driver"
+
+           ]
           },
           "configurations": {
             "production": {
